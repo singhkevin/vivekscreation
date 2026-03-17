@@ -31,7 +31,7 @@ export function ProductSubcategoryCard({
 
   const imageUrl = usePlaceholder
     ? getSubcategoryPlaceholderUrl(item.label)
-    : getSubcategoryImageUrl(item.label)
+    : getSubcategoryImageUrl(categorySlug, item.label)
 
   return (
     <article className="group flex flex-col overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm transition-shadow hover:border-slate-300 hover:shadow-md">

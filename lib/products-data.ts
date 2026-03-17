@@ -220,8 +220,8 @@ function slugify(label: string): string {
     .replace(/^-|-$/g, '')
 }
 
-export function getSubcategoryLocalImagePath(label: string): string {
-  return `/images/products/subcategories/${slugify(label)}.jpg`
+export function getSubcategoryLocalImagePath(categorySlug: string, label: string): string {
+  return `/images/products/subcategories/${categorySlug}/${slugify(label)}.jpg`
 }
 
 export function getSubcategoryPlaceholderUrl(label: string): string {
@@ -229,8 +229,8 @@ export function getSubcategoryPlaceholderUrl(label: string): string {
   return `https://placehold.co/400x300/e8e8e8/374151?text=${text}`
 }
 
-export function getSubcategoryImageUrl(label: string): string {
-  return getSubcategoryLocalImagePath(label)
+export function getSubcategoryImageUrl(categorySlug: string, label: string): string {
+  return getSubcategoryLocalImagePath(categorySlug, label)
 }
 
 export type SubcategoryGroup = {
@@ -243,6 +243,7 @@ export function getSubcategoryGroups(
 ): SubcategoryGroup[] {
   const groups: SubcategoryGroup[] = []
 
+  // 1. Add specs-based groups (Male, Female, Kids, etc.)
   if (category.specs) {
     for (const [key, values] of Object.entries(category.specs)) {
       if (values.length > 0) {
@@ -254,13 +255,28 @@ export function getSubcategoryGroups(
     }
   }
 
+  // 2. Add subcategory-based groups
   if (category.subcategories && category.subcategories.length > 0) {
-    groups.push({
-      groupName: 'Options',
-      items: category.subcategories.map((sub) => ({ label: sub.name })),
+    category.subcategories.forEach((sub) => {
+      if (sub.items && sub.items.length > 0) {
+        // If it has specific items (like "White Paper"), create a dedicated group
+        groups.push({
+          groupName: sub.name,
+          items: sub.items.map((item) => ({ label: item })),
+        })
+      } else {
+        // Otherwise, add the subcategory name itself to an "Options" group
+        let optionsGroup = groups.find((g) => g.groupName === 'Options')
+        if (!optionsGroup) {
+          optionsGroup = { groupName: 'Options', items: [] }
+          groups.push(optionsGroup)
+        }
+        optionsGroup.items.push({ label: sub.name })
+      }
     })
   }
 
+  // 3. Fallback if no groups found
   if (groups.length === 0) {
     groups.push({
       groupName: category.name,
