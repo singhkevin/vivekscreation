@@ -13,7 +13,7 @@ export function ContactInfo() {
       >
         Contact Information
       </h2>
-      <ul className="mt-6 space-y-4">
+      <ul className="mt-6 list-none space-y-4 pl-0">
         <li>
           <a
             href={`tel:${CONTACT.phone.replace(/\s/g, '')}`}

@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import { Phone, Mail, MapPin } from 'lucide-react'
 import { SITE_NAME, NAV_LINKS, CONTACT } from '@/lib/constants'
+import { PRODUCT_CATEGORIES } from '@/lib/products-data'
 
 const USEFUL_LINKS = [
   { href: '/privacy', label: 'Privacy Policy' },
@@ -19,7 +20,7 @@ export function Footer() {
     >
       <div
         style={{ maxWidth: 1280, margin: '0 auto' }}
-        className="grid gap-8 px-4 py-12 sm:px-6 lg:px-8 md:grid-cols-2 lg:grid-cols-4"
+        className="grid gap-8 px-4 py-12 sm:px-6 lg:px-8 md:grid-cols-2 lg:grid-cols-5"
       >
         <div>
           <Link href="/" className="block w-fit no-underline">
@@ -49,6 +50,34 @@ export function Footer() {
                   style={{ color: '#d1d5db' }}
                 >
                   {link.label}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div>
+          <h3 className="text-sm font-semibold uppercase tracking-wider" style={{ color: '#9ca3af' }}>
+            Products
+          </h3>
+          <ul className="mt-4 list-none space-y-2 pl-0">
+            <li>
+              <Link
+                href="/products"
+                className="text-sm no-underline hover:text-white"
+                style={{ color: '#d1d5db' }}
+              >
+                All Products
+              </Link>
+            </li>
+            {PRODUCT_CATEGORIES.map((category) => (
+              <li key={category.id}>
+                <Link
+                  href={`/products/${category.slug}`}
+                  className="text-sm no-underline hover:text-white"
+                  style={{ color: '#d1d5db' }}
+                >
+                  {category.name}
                 </Link>
               </li>
             ))}
@@ -113,6 +142,18 @@ export function Footer() {
       >
         <p className="text-center text-sm" style={{ color: '#9ca3af' }}>
           &copy; {currentYear} {SITE_NAME}. All rights reserved.
+        </p>
+        <p className="mt-2 text-center text-sm" style={{ color: '#9ca3af' }}>
+          Made with ❤ by{' '}
+          <a
+            href="https://viralinbound.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="no-underline hover:text-white"
+            style={{ color: '#d1d5db' }}
+          >
+            Viral Inbound
+          </a>
         </p>
       </div>
     </footer>
