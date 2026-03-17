@@ -77,7 +77,6 @@ export const PRODUCT_CATEGORIES: ProductCategory[] = [
         items: [
           'White Paper (Bleach Kraft / Maplitho)',
           'Kraft Paper',
-          'Board',
           'Customized Paper Bags',
         ],
       },
@@ -131,19 +130,30 @@ export const PRODUCT_CATEGORIES: ProductCategory[] = [
     image: '/images/products/eas-security.jpg',
     subcategories: [
       {
-        name: 'Systems',
-        items: ['RF Systems', 'AM Systems'],
+        name: 'Anti Theft Machine',
+        items: ['RF', 'AM'],
       },
       {
-        name: 'Products',
-        items: [
-          'Security Tags',
-          'Labels',
-          'Tag Detachers',
-          'Double Checkers',
-          'Deactivator Pads',
-          'People Counter',
-        ],
+        name: 'EAS Security Tag',
+        items: ['RF Tags', 'AM Tags'],
+      },
+      {
+        name: 'EAS Label',
+        items: ['RF', 'AM'],
+      },
+      {
+        name: 'EAS Tag Detatcher',
+      },
+      {
+        name: 'Tag Double Checker',
+        items: ['RF', 'AM'],
+      },
+      {
+        name: 'Tag Deactivator Pad',
+        items: ['RF', 'AM'],
+      },
+      {
+        name: 'People Counting Machine',
       },
     ],
   },
@@ -265,13 +275,11 @@ export function getSubcategoryGroups(
           items: sub.items.map((item) => ({ label: item })),
         })
       } else {
-        // Otherwise, add the subcategory name itself to an "Options" group
-        let optionsGroup = groups.find((g) => g.groupName === 'Options')
-        if (!optionsGroup) {
-          optionsGroup = { groupName: 'Options', items: [] }
-          groups.push(optionsGroup)
-        }
-        optionsGroup.items.push({ label: sub.name })
+        // Subcategory with no items: treat as its own separate group
+        groups.push({
+          groupName: sub.name,
+          items: [{ label: sub.name }],
+        })
       }
     })
   }
