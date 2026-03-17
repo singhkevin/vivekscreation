@@ -69,7 +69,7 @@ export function ProductsMegaMenu() {
         role="menu"
         aria-label="Product categories"
         aria-hidden={!open}
-        inert={open ? undefined : ''}
+        {...(!open && { inert: true })}
         className="absolute left-1/2 top-full z-50 w-[min(90vw,42rem)] -translate-x-1/2 rounded-xl border border-white/10 pt-1 shadow-2xl transition-opacity duration-150 md:w-[42rem]"
         style={{
           backgroundColor: 'rgba(0,0,0,0.92)',
