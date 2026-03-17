@@ -16,7 +16,7 @@ export function CompanyOverview() {
           brands, boutiques, and retail chains. We are a trusted supplier of
           mannequins, hangers, racks, store display systems, packaging, and
           retail accessories used by clothing brands and retail stores
-          nationwide.
+          globally.
         </p>
       </div>
     </section>
