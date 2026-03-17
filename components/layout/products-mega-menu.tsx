@@ -2,13 +2,14 @@
 
 import Image from 'next/image'
 import Link from 'next/link'
-import { useRef, useState } from 'react'
+import { useRef, useState, useEffect } from 'react'
 import { ChevronDown } from 'lucide-react'
 import { PRODUCT_CATEGORIES } from '@/lib/products-data'
 
 export function ProductsMegaMenu() {
   const [open, setOpen] = useState(false)
   const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null)
+  const liRef = useRef<HTMLLIElement>(null)
 
   const handleEnter = () => {
     if (timeoutRef.current) {
@@ -22,17 +23,35 @@ export function ProductsMegaMenu() {
     timeoutRef.current = setTimeout(() => setOpen(false), 100)
   }
 
+  useEffect(() => {
+    const el = liRef.current
+    if (!el) return
+    const handleFocusIn = () => {
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current)
+        timeoutRef.current = null
+      }
+      setOpen(true)
+    }
+    const handleFocusOut = (e: FocusEvent) => {
+      if (!el.contains(e.relatedTarget as Node)) {
+        timeoutRef.current = setTimeout(() => setOpen(false), 150)
+      }
+    }
+    el.addEventListener('focusin', handleFocusIn)
+    el.addEventListener('focusout', handleFocusOut)
+    return () => {
+      el.removeEventListener('focusin', handleFocusIn)
+      el.removeEventListener('focusout', handleFocusOut)
+    }
+  }, [])
+
   return (
     <li
+      ref={liRef}
       className="group relative"
       onMouseEnter={handleEnter}
       onMouseLeave={handleLeave}
-      onFocusWithin={() => setOpen(true)}
-      onBlur={(e) => {
-        if (!e.currentTarget.contains(e.relatedTarget)) {
-          timeoutRef.current = setTimeout(() => setOpen(false), 150)
-        }
-      }}
     >
       <Link
         href="/products"
