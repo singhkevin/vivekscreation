@@ -77,7 +77,7 @@ export function HeroSection() {
             textShadow: '0 1px 4px rgba(0,0,0,0.4)',
           }}
         >
-          Your one-stop solution for retail display, mannequins, hangers and store branding.
+          Your one-stop solution for retail display, mannequins, hangers, dress forms and store branding. Based in Bangalore, we serve retailers and fashion brands across Karnataka and pan India.
         </p>
         <Link
           href="/products"

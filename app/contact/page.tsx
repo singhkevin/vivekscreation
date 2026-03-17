@@ -7,7 +7,7 @@ import { ContactStructuredData } from '@/components/contact/structured-data'
 export const metadata: Metadata = {
   title: 'Contact Us',
   description:
-    "Get in touch with Vivek's Creation for bulk orders, custom manufacturing, and retail display solutions.",
+    "Contact Vivek's Creation in Bangalore for mannequins, hangers, dress forms and retail display solutions. We serve Karnataka and pan India. Get a quote for bulk or custom orders.",
 }
 
 export default function ContactPage() {
@@ -20,7 +20,9 @@ export default function ContactPage() {
           Contact Us
         </h1>
         <p className="mt-4 max-w-2xl text-slate-600">
-          Have a question or ready to place an order? We are here to help.
+          Have a question or ready to place an order? We are based in Bangalore
+          and serve retailers across Karnataka and pan India. Get in touch for
+          quotes on mannequins, hangers, dress forms and display solutions.
         </p>
 
         <div className="mt-12 grid gap-12 lg:grid-cols-5 lg:gap-16">

@@ -15,8 +15,9 @@ export function ContactCtaSection() {
           Get in Touch
         </h2>
         <p style={{ color: '#4b5563', maxWidth: 600, margin: '16px auto 0' }}>
-          For bulk orders and custom manufacturing, our team is ready to help
-          you find the perfect retail display solutions.
+          Based in Bangalore, we serve retailers across Karnataka and pan
+          India. For bulk orders and custom manufacturing of mannequins,
+          hangers and display solutions, our team is ready to help.
         </p>
         <div className="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
           <Button href="/contact" variant="primary">

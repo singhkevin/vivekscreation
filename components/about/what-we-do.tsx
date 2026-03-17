@@ -24,7 +24,10 @@ export function WhatWeDo() {
         </h2>
         <p className="mt-4 max-w-2xl text-slate-600">
           We design and manufacture a comprehensive range of retail display
-          solutions for fashion and retail businesses.
+          solutions for fashion and retail businesses. From our base in
+          Bangalore, we supply stores and brands across Karnataka and pan India
+          with mannequins, hangers, dress forms, EAS systems, and custom store
+          branding.
         </p>
         <div className="mt-12 grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3">
           {CATEGORIES.map((category) => (

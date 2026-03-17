@@ -139,18 +139,14 @@ export const PRODUCT_CATEGORIES: ProductCategory[] = [
       },
       {
         name: 'EAS Label',
-        items: ['RF', 'AM'],
+        items: ['RF (EAS Label)', 'AM (EAS Label)'],
       },
       {
         name: 'EAS Tag Detatcher',
       },
       {
-        name: 'Tag Double Checker',
-        items: ['RF', 'AM'],
-      },
-      {
-        name: 'Tag Deactivator Pad',
-        items: ['RF', 'AM'],
+        name: 'Tag Double Checker / Tag Deactivator Pad',
+        items: ['RF (Deactivator Pad)', 'AM (Deactivator Pad)'],
       },
       {
         name: 'People Counting Machine',
@@ -218,6 +214,12 @@ export const PRODUCT_RANGE_GRID = PRODUCT_CATEGORIES.map((c) => ({
   slug: c.slug,
   image: c.image,
 }))
+
+export function getCategoryBySlug(slug: string): ProductCategory | undefined {
+  return PRODUCT_CATEGORIES.find((c) => c.slug === slug)
+}
+
+export const PRODUCT_CATEGORY_SLUGS = PRODUCT_CATEGORIES.map((c) => c.slug)
 
 export type SubcategoryGridItem = {
   label: string

@@ -2,100 +2,68 @@ import type { Metadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
 import { EnquiryModalProvider } from '@/components/contact/enquiry-modal-context'
-import { ProductSubcategoryCard } from '@/components/products/product-subcategory-card'
 import { ProductsCustomizationCta } from '@/components/products/customization-cta'
-import {
-  PRODUCT_CATEGORIES,
-  getSubcategoryGroups,
-} from '@/lib/products-data'
+import { PRODUCT_CATEGORIES } from '@/lib/products-data'
 
 export const metadata: Metadata = {
   title: 'Products',
   description:
-    'Explore our product catalogue - fiber mannequins, dress forms, hangers, carry bags, clothing stands, EAS systems, and more retail display solutions.',
+    'Retail display products in Bangalore and pan India: fiber mannequins, dress forms, hangers, carry bags, clothing stands, EAS systems. Browse our catalogue and get a quote.',
 }
 
 export default function ProductsPage() {
   return (
     <EnquiryModalProvider>
-    <section className="bg-beige px-4 py-16 sm:py-20">
-      <div className="mx-auto max-w-content">
-        <h1 className="font-display text-3xl font-semibold text-charcoal sm:text-4xl">
-          Product Catalogue
-        </h1>
-        <p className="mt-4 max-w-2xl text-slate-600">
-          Browse our range of retail display solutions. Select a category to view
-          subcategories and options.
-        </p>
+      <section className="bg-beige px-4 py-16 sm:py-20">
+        <div className="mx-auto max-w-content">
+          <h1 className="font-display text-3xl font-semibold text-charcoal sm:text-4xl">
+            Product Catalogue
+          </h1>
+          <p className="mt-4 max-w-2xl text-slate-600">
+            Choose a category to view subcategories and options.
+          </p>
+          <p className="mt-4 max-w-2xl text-slate-600">
+            We supply mannequins, hangers, dress forms, display systems and
+            retail accessories from Bangalore to stores and brands across
+            Karnataka and pan India. Request a quote for bulk orders or custom
+            requirements.
+          </p>
 
-        <nav className="mt-8 flex flex-wrap gap-2" aria-label="Jump to category">
-          {PRODUCT_CATEGORIES.map((category) => (
-            <Link
-              key={category.id}
-              href={`#${category.slug}`}
-              className="rounded-md bg-white px-3 py-1.5 text-sm font-medium text-slate-700 shadow-sm ring-1 ring-slate-200 transition-colors hover:bg-slate-50 hover:ring-slate-300"
-            >
-              {category.name}
-            </Link>
-          ))}
-        </nav>
-
-        <div className="mt-12 space-y-16">
-          {PRODUCT_CATEGORIES.map((category) => {
-            const groups = getSubcategoryGroups(category)
-            return (
-              <section
+          <div className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+            {PRODUCT_CATEGORIES.map((category) => (
+              <Link
                 key={category.id}
-                id={category.slug}
-                className="scroll-mt-24"
-                aria-labelledby={`heading-${category.slug}`}
+                href={`/products/${category.slug}`}
+                className="group overflow-hidden rounded-xl border border-slate-200 bg-white transition-all hover:border-slate-300 hover:shadow-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2"
               >
-                <div className="flex flex-col gap-6 sm:flex-row sm:items-center sm:gap-8">
-                  {category.image && (
-                    <div className="relative h-32 w-full shrink-0 overflow-hidden rounded-xl bg-slate-100 sm:h-24 sm:w-48">
-                      <Image
-                        src={category.image}
-                        alt={category.name}
-                        fill
-                        sizes="(max-width: 640px) 100vw, 192px"
-                        className="object-cover"
-                      />
-                    </div>
-                  )}
-                  <h2
-                    id={`heading-${category.slug}`}
-                    className="font-display text-2xl font-semibold text-charcoal sm:text-3xl"
-                  >
+                {category.image ? (
+                  <div className="relative aspect-[4/3] w-full overflow-hidden bg-slate-100">
+                    <Image
+                      src={category.image}
+                      alt={category.name}
+                      fill
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                      className="object-cover transition-transform group-hover:scale-105"
+                    />
+                  </div>
+                ) : (
+                  <div className="aspect-[4/3] w-full bg-slate-100" />
+                )}
+                <div className="p-4">
+                  <span className="font-semibold text-charcoal group-hover:text-accent">
                     {category.name}
-                  </h2>
+                  </span>
+                  <span className="mt-2 block text-sm font-medium text-accent">
+                    View category →
+                  </span>
                 </div>
-                <div className="mt-6 space-y-10">
-                  {groups.map((group) => (
-                    <div key={group.groupName}>
-                      <h3 className="mb-4 text-sm font-semibold uppercase tracking-wider text-slate-500">
-                        {group.groupName}
-                      </h3>
-                      <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:gap-6 lg:grid-cols-4">
-                        {group.items.map((item) => (
-                          <ProductSubcategoryCard
-                            key={`${group.groupName}-${item.label}`}
-                            categorySlug={category.slug}
-                            categoryName={category.name}
-                            item={item}
-                          />
-                        ))}
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </section>
-            )
-          })}
-        </div>
+              </Link>
+            ))}
+          </div>
 
-        <ProductsCustomizationCta />
-      </div>
-    </section>
+          <ProductsCustomizationCta />
+        </div>
+      </section>
     </EnquiryModalProvider>
   )
 }

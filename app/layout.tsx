@@ -9,7 +9,7 @@ export const metadata: Metadata = {
     template: `%s | Vivek's Creation`,
   },
   description:
-    'Manufacturers of mannequins, hangers, display systems, store branding and retail accessories. Trusted by leading fashion brands across India.',
+    "Vivek's Creation manufactures mannequins, hangers, dress forms, display systems, and retail accessories in Bangalore. Trusted by fashion brands across Karnataka and pan India for store display solutions.",
   openGraph: {
     type: 'website',
   },

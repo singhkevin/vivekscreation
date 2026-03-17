@@ -23,7 +23,7 @@ export function ProductRangeGrid() {
           {PRODUCT_RANGE_GRID.map((item) => (
             <Link
               key={item.slug}
-              href={`/products#${item.slug}`}
+              href={`/products/${item.slug}`}
               className="group overflow-hidden rounded-lg border border-gray-200 bg-white text-left transition-all hover:border-red-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-red-600 focus-visible:ring-offset-2"
             >
               {item.image ? (

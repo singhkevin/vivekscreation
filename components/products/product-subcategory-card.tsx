@@ -36,7 +36,7 @@ export function ProductSubcategoryCard({
   return (
     <article className="group flex flex-col overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm transition-shadow hover:border-slate-300 hover:shadow-md">
       <Link
-        href={`/products#${categorySlug}`}
+        href={`/products/${categorySlug}`}
         className="block flex-1"
       >
         <div className="relative aspect-[4/3] w-full overflow-hidden bg-slate-100">
